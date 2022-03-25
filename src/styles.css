@@ -1,0 +1,235 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~ngx-toastr/toastr';
+* {
+    box-sizing: border-box;
+}
+
+table,
+tr,
+td,
+th,
+div,
+input,
+textarea,
+button,
+label,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
+    font-family: 'Poppins', sans-serif;
+}
+
+p {
+    font-weight: 500;
+}
+
+body,
+button,
+html,
+input {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+p {
+    margin-bottom: 0;
+}
+
+.bg-white {
+    background-color: #fff;
+}
+
+.graymedium {
+    color: #3C4257;
+}
+
+.input-color input,
+.input-color {
+    color: #3C4257;
+}
+
+.graydark {}
+
+.graylight {}
+
+.hidden {
+    display: none;
+}
+
+
+/* --------------------------used in Change password ------------------------- */
+
+.input-type2 {
+    background: #F5F7FB;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 8px;
+    height: 40px;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+.form-type2 label {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 15px;
+    letter-spacing: 0.008em;
+    color: #404452;
+    padding-bottom: 10px;
+}
+
+.form-type2 .form-group.has-error input {
+    background: rgba(255, 64, 64, 0.2);
+    border: 1px solid #FF4040;
+}
+
+.form-type2 .form-group .has-success {
+    background: rgba(199, 239, 255, 0.2);
+    border: 1px solid #009EDE;
+}
+
+.form-type2 .form-group .error {
+    display: none;
+}
+
+.form-type2 .form-group.has-error .error {
+    display: block;
+}
+
+.btn-regular {
+    border-radius: 6px;
+    border: none;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 15px;
+    text-align: center;
+    letter-spacing: 0.008em;
+    color: #FFFFFF;
+    height: 35px;
+    min-width: 80px;
+}
+
+
+/* .btn-regular .btn-text {
+    font-size: 14px;
+    font-weight: 500;
+    transform: translateY(-6px);
+    padding: 12px 35px;
+    border-radius: 6px;
+    background-color: #009EDE;
+    display: block;
+}
+
+.btn-regular.btn-cancel .btn-text {
+    background: #939496;
+} */
+
+.btn-regular:active .btn-text {
+    transform: translateY(-2px);
+}
+
+.btn-regular:focus,
+.btn-regular:hover {
+    color: #fff;
+    box-shadow: none;
+}
+
+.btn-regular:disabled {
+    cursor: not-allowed;
+}
+
+.btn-save {
+    background: #009EDE;
+}
+
+.btn-cancel {
+    background: #bdc0c4;
+}
+
+.button-flex .btn-regular:nth-child(1) {
+    margin-right: 1em;
+}
+
+
+/* -------------------------------------------------------------------------- */
+
+
+/*                              login signup css                              */
+
+
+/* -------------------------------------------------------------------------- */
+
+.login-page {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    background-image: url('https://g99plus.b-cdn.net/AA%20new%20g99%20app/images/Grey%20background%20shape.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.login-geometric-bg {
+    width: 100%;
+    position: absolute;
+    top: 33vh;
+    z-index: 1;
+}
+
+p {
+    margin-bottom: 0;
+}
+
+p.normal {
+    font-size: 14px;
+    line-height: 16px;
+    color: #3c4257;
+    font-weight: 500;
+}
+
+p.blue-text {
+    color: #009EDE;
+}
+
+.blue-box {
+    padding: 30px 20px;
+    background-color: #c7efff33;
+    border: 1px solid #009ede;
+    border-radius: 4px;
+}
+
+.blue-btn {
+    background-color: #009EDE;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.link {
+    font-size: 14px;
+    line-height: 16px;
+    color: #009ede;
+    text-decoration: none;
+}
+
+.error,
+.error div {
+    color: red;
+    font-size: 14px;
+    padding-top: 5px;
+}
+
+.input-color .form-control {
+    font-size: 16px;
+}

@@ -1,0 +1,29 @@
+.shift-right {
+    padding-left: 290px;
+}
+
+.left-sidebar {
+    position: fixed;
+    overflow: hidden;
+    overflow-y: auto;
+    height: 100vh;
+    background-color: #fff;
+}
+
+.right-section {
+    background-color: #E5E5E5;
+}
+
+.left-sidebar::-webkit-scrollbar {
+    width: 0;
+    /* Remove scrollbar space */
+    background: transparent;
+    /* Optional: just make scrollbar invisible */
+}
+
+
+/* Optional: show position indicator in red */
+
+.left-sidebar::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}

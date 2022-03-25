@@ -1,0 +1,53 @@
+<div class="side-bar accordion" id="sidebar-accordian">
+    <div class="side-bar-header">
+        <img src="https://g99plus.b-cdn.net/AA%20new%20g99%20app/images/g99%20full%20logo.svg" alt="" />
+    </div>
+    <div class="divider"></div>
+
+    <div class="side-bar-body">
+        <div class="item" *ngFor="let menu of menus ; let i = index">
+            <div class="item-details">
+                <div class="item-icon">
+                    <i class="{{menu.icon}}"></i>
+                </div>
+                <ng-container *ngIf=" menu?.items.length>0">
+                    <a class="item-name collapsed" [ngClass]="activeMenuIndex=== i ? 'active' : ''" data-bs-toggle="collapse" data-toggle="collapse" role="button" aria-expanded="true" [attr.aria-controls]="'menu-'+menu.id" [attr.data-bs-target]="'#menu-'+menu.id">{{menu?.displayName}}</a>
+                    <span class="icon-right">
+                      <i class="fa fa-chevron-down"></i>
+                    </span>
+                </ng-container>
+
+                <ng-container *ngIf=" menu?.items.length===0">
+                    <a class="item-name" (click)="activeMenu(i)" [ngClass]="activeMenuIndex=== i ? 'active' : 'no'" [routerLink]="menu.routerLink">{{menu?.displayName}}</a>
+                </ng-container>
+            </div>
+            <ng-container *ngIf=" menu?.items.length>0">
+                <div class="submenu accordion-collapse collapse" [attr.aria-labelledby]="'menu-'+menu.id" id="menu-{{menu.id}}" data-bs-parent="#sidebar-accordian">
+                    <div class="submenu-item" *ngFor="let submenu of menu?.items">
+                        <div class="item-details" (click)="activeMenu(i)">
+                            <div class="item-icon">
+                                <i class="{{submenu.icon}}"></i>
+                            </div>
+                            <a [ngClass]="currentPagePath === submenu.routerLink?'active' : ''" [routerLink]="submenu.routerLink">{{submenu?.displayName}}</a>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+
+        </div>
+
+        <div class="item">
+            <div class="item-details">
+                <div class="item-icon">
+                    <i class="fa fa-power-off"></i>
+                </div>
+                <a class="item-name" href="javascript:void(0)" (click)=" logout() ">
+                   Logout
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="side-bar-footer">
+        <p>Contact Support - Privacy & Terms</p>
+    </div>
+</div>

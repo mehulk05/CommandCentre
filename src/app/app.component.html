@@ -1,0 +1,14 @@
+<!-- <div class="main-container">
+    <div class="authenticated-section">
+        <div class="left-sidebar" *ngIf="userData && userData.accessToken">
+            <app-side-bar></app-side-bar>
+        </div>
+        <div class="right-section" [ngClass]="userData && userData.accessToken ? 'shift-right': ''">
+            <router-outlet></router-outlet>
+        </div>
+
+    </div>
+
+</div> -->
+<router-outlet></router-outlet>
+<ngx-ui-loader></ngx-ui-loader>
