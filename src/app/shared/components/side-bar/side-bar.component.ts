@@ -24,31 +24,74 @@ export class SideBarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.authService.currentUserSubject.subscribe((data: any) => {
-      this.currentUserInfo = data;
-
-      this.getSideBar();
-    });
-    this.activatedRoute.url.subscribe((data) => {
-      console.log(data);
-    });
-    this.currentPagePath = window.location.pathname;
-    console.log(this.router.url, window.location.pathname);
+    this.getSideBar();
   }
 
   getSideBar() {
-    this.menus = this.localStorageService.readStorage('sidebarData') ?? [];
-    if (this.menus.length > 0) {
-      this.menuOperation();
-    } else {
-      this.menuService
-        .getUserMenus(this.currentUserInfo.id, this.currentUserInfo.roles)
-        .then((res) => {
-          this.menus = res;
-          this.menuOperation();
-          this.localStorageService.storeItem('sidebarData', res);
-        });
-    }
+    this.menus = [
+      {
+        id: 1,
+        displayName: 'Profile',
+        groupMenu: null,
+        position: 1,
+        items: []
+      },
+      {
+        id: 2,
+        displayName: 'Important Links',
+        groupMenu: null,
+        position: 2,
+        items: [
+          {
+            id: 21,
+            displayName: 'Website',
+            groupMenu: null,
+            position: 1,
+            items: []
+          },
+          {
+            id: 22,
+            displayName: 'Baecamp',
+            groupMenu: null,
+            position: 1,
+            items: [],
+            url: 'https://3.basecamp.com/'
+          },
+          {
+            id: 23,
+            displayName: 'Unbounce',
+            groupMenu: null,
+            position: 1,
+            items: [],
+            url: 'https://unbounce.com/'
+          },
+          {
+            id: 24,
+            displayName: 'Zapier',
+            groupMenu: null,
+            position: 1,
+            items: [],
+            url: 'https://zapier.com/app/zaps'
+          },
+          {
+            id: 25,
+            displayName: 'Zanoto',
+            groupMenu: null,
+            position: 1,
+            items: [],
+            url: ''
+          },
+          {
+            id: 25,
+            displayName: 'Close CRM',
+            groupMenu: null,
+            position: 1,
+            items: [],
+            url: 'https://close.com/'
+          }
+        ]
+      }
+    ];
   }
 
   menuOperation() {

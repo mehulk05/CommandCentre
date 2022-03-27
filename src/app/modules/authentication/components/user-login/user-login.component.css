@@ -6,7 +6,7 @@ p.label {
 }
 
 .label.forgot {
-    color: #009ede;
+    color: #b68969;
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
@@ -34,10 +34,11 @@ p.stay {
 
 .input {
     width: 100%;
-    padding: 11.5px 12px 11.5px 16px;
+    height: 68px;
+    padding: 0 20px;
     color: #3c4257;
     border: 1px solid #d9dce1;
-    border-radius: 5px;
+    border-radius: 0;
     margin-top: 12px;
     margin-bottom: 32px;
 }
@@ -102,11 +103,12 @@ p.stay {
 .continue-btn {
     width: 100%;
     padding: 10px 0;
-    background: #009ede;
+    background: #b68969;
     color: white;
     border: none;
-    border-radius: 5px;
-    font-weight: 500;
+    border-radius: 0px;
+    font-weight: 400;
+    min-height: 55px;
 }
 
 .no-account {
@@ -130,7 +132,7 @@ p.stay {
 
 span.show-hide {
     position: absolute;
-    top: 10px;
+    top: 20px;
     right: 1em;
     cursor: pointer;
 }

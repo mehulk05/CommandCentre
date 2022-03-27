@@ -69,7 +69,7 @@ table.dataTable thead td {
 table.dataTable thead th {
     border-top: 1px solid gainsboro;
     border-top: 1px solid gainsboro;
-    background: rgb(99, 91, 255);
+    background: #89624b;
     color: #fff;
 }
 
@@ -101,19 +101,25 @@ table.dataTable.display tbody tr:hover {
 
 .dataTables_wrapper .dataTables_length select {
     padding: 0px 4px;
-    height: auto;
     min-height: 0;
+    height: 31px;
+    min-width: 45px;
 }
 
 .table-btn-wrapper .icon {
-    min-height: 28px;
+    min-height: 31px;
     border-radius: 6px;
-    padding: 5px 20px;
+    padding: 6.5px 20px;
     color: #fff;
     font-size: 14px;
     font-weight: 500;
-    background-color: rgb(99, 91, 255);
+    background-color: #89624b;
     box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 12%) 0px 1px 1px 0px, rgb(99 91 255) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(64 68 82 / 8%) 0px 2px 5px 0px;
+}
+
+.page-item.active .page-link {
+    background-color: #89624b !important;
+    border-color: #89624b !important;
 }
 
 .table-btn-wrapper .icon a {
@@ -128,7 +134,50 @@ table.dataTable tbody td {
     text-transform: lowercase;
 }
 
+table.dataTable tbody td:first-letter,
+table.dataTable tbody td:first-line {
+    text-transform: capitalize;
+}
+
+table.dataTable tbody td i {
+    margin-right: 10px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button a,
+.dataTables_wrapper .dataTables_info {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background: #fff !important;
+    border: none;
+    box-shadow: none;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    width: auto;
+    min-width: unset;
+    padding: 1em 5px;
+    box-shadow: none;
+}
+
+.table-header-wrapper .dropdown-toggle {
+    height: 31px;
+}
+
+.datatable-table .title {
+    padding: 1em 15px 1em;
+    margin-bottom: 1em;
+    border-bottom: 1px solid gainsboro;
+}
+
+.datatable-table .title h3 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
 
 /* .dataTables_wrapper .row:nth-child(1) {
-    justify-content: space-between;
+  justify-content: space-between;
 } */

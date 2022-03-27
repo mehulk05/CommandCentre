@@ -22,7 +22,11 @@ h4,
 h5,
 h6,
 a {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+}
+
+img {
+    max-width: 100%;
 }
 
 p {
@@ -219,7 +223,7 @@ p.blue-text {
 .link {
     font-size: 14px;
     line-height: 16px;
-    color: #009ede;
+    color: #89624b;
     text-decoration: none;
 }
 
