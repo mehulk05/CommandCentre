@@ -9,7 +9,7 @@ p.login-label.forgot {
     font-size: 14px;
     font-weight: 500;
     line-height: 17px;
-    color: #009ede;
+    color: #b68969;
 }
 
 .stay {
@@ -93,7 +93,7 @@ p.login-label.forgot {
 .continue-btn {
     width: 100%;
     padding: 14px 0;
-    background: #009ede;
+    background: #b68969;
     color: white;
     border: none;
     border-radius: 5px;

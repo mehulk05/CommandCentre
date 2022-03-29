@@ -12,6 +12,7 @@ import { LoaderInterceptor } from './shared/services/Interceptors/loader.interce
 import { DataTablesModule } from 'angular-datatables';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { ChartsModule } from 'ng2-charts';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,7 +27,8 @@ import { ChartsModule } from 'ng2-charts';
     ToastrModule.forRoot(),
     DataTablesModule,
     NgxUiLoaderModule,
-    ChartsModule
+    ChartsModule,
+    BsDatepickerModule.forRoot()
   ],
   providers: [
     {

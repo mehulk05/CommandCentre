@@ -75,7 +75,7 @@
 }
 
 .stat {
-    background: #e0eafc;
+    background: #f4efe9;
     border-radius: 50%;
     padding: 0.75rem;
     width: 48px;
@@ -163,4 +163,17 @@ canvas {
     min-height: 300px;
     padding: 1em;
     max-height: 300px;
+}
+
+.filters {
+    display: flex;
+    justify-content: flex-end;
+    row-gap: 1em;
+    column-gap: 1em;
+}
+
+::ng-deep .bs-datepicker,
+.bs-datepicker {
+    right: -6em;
+    position: absolute !important;
 }

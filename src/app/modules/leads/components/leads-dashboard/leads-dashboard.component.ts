@@ -126,8 +126,8 @@ export class LeadsDashboardComponent {
   public lineChartColors: Array<any> = [
     {
       // grey
-      backgroundColor: '#3f80ea',
-      borderColor: '#3f80ea',
+      backgroundColor: '#b68969',
+      borderColor: '#b68969',
       pointBackgroundColor: 'rgba(148,159,177,1)',
       pointBorderColor: '#fff',
       pointHoverBackgroundColor: '#fff',

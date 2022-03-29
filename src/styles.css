@@ -237,3 +237,11 @@ p.blue-text {
 .input-color .form-control {
     font-size: 16px;
 }
+
+.theme-default .bs-datepicker-head,
+.theme-default .bs-datepicker-body table td span.selected,
+.theme-default .bs-datepicker-body table td.selected span,
+.theme-default .bs-datepicker-body table td span[class*=select-]:after,
+.theme-default .bs-datepicker-body table td[class*=select-] span:after {
+    background-color: #89624b;
+}

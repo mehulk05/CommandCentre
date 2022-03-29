@@ -31,7 +31,7 @@ export class SideBarComponent implements OnInit {
     this.menus = [
       {
         id: 1,
-        displayName: 'Profile',
+        displayName: 'My Profile',
         groupMenu: null,
         position: 1,
         items: []
@@ -75,11 +75,11 @@ export class SideBarComponent implements OnInit {
           },
           {
             id: 25,
-            displayName: 'Zanoto',
+            displayName: 'Zenoti',
             groupMenu: null,
             position: 1,
             items: [],
-            url: ''
+            url: 'https://docs.zenoti.com/'
           },
           {
             id: 25,
