@@ -2,7 +2,7 @@
   <div class="leads-graphs">
     <div class="leads-stats">
       <div class="title">
-        <h3>Leads Overview</h3>
+        <h3>Command Centre Overview</h3>
         <div class="filters">
           <div class="form-group">
             <select class="form-control">
@@ -174,21 +174,57 @@
 
 
           <div class="col-lg-8 col-md-12 col-sm-12">
-            <div class="card chartItem line-chart">
-              <div class="lead-title dashboard-title">
-                <div class="col-sm-12">
-                  <h4>
-                    Leads By Months
-                  </h4>
-                </div>
+            <div class="card table-responsive">
+              <div class="card chartItem">
+                <div class="item">
+                  <canvas baseChart [data]="MaximumLeadPieChart.pieChartData"
+                    [labels]="MaximumLeadPieChart.pieChartLabels" [chartType]="MaximumLeadPieChart.pieChartType"
+                    [options]="MaximumLeadPieChart.pieChartOptions" [plugins]="MaximumLeadPieChart.pieChartPlugins"
+                    [colors]="MaximumLeadPieChart.pieChartColors" [legend]="MaximumLeadPieChart.pieChartLegend">
+                  </canvas>
 
-              </div>
-              <div class="item">
-                <canvas baseChart [datasets]="LeadsDataLineChart.lineChartData"
-                  [labels]="LeadsDataLineChart.lineChartLabels" [chartType]="LeadsDataLineChart.lineChartType"
-                  [options]="LeadsDataLineChart.lineChartOptions" [colors]="LeadsDataLineChart.lineChartColors"
-                  [plugins]="barChartPlugins" [legend]="LeadsDataLineChart.lineChartLegend">
-                </canvas>
+                  <table class="table thead-light table-borderless table-hover">
+                    <thead>
+                      <tr>
+                        <th>
+                          id
+                        </th>
+                        <th>
+                          Campaign Name
+                        </th>
+
+                        <th>
+                          Leads
+                        </th>
+
+                        <th>
+                          Appointment Booked
+                        </th>
+                        <th>
+                          Ads Spent(Cost)
+                        </th>
+
+                        <th>
+                          Revenu Earned
+                        </th>
+
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr style="cursor: pointer;">
+                        <td>1</td>
+                        <td>Campaign</td>
+                        <td>250</td>
+                        <td>40</td>
+                        <td>$300</td>
+                        <td>$600</td>
+                      </tr>
+
+
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
@@ -269,144 +305,13 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-8 col-md-12 col-sm-12">
-            <div class="card table-responsive">
-              <table class="table thead-light table-borderless table-hover">
-                <thead>
-                  <tr>
-                    <th *ngFor="let label of LeadsDataLineChart.lineChartLabels">{{label}}</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let d of LeadsDataLineChart.lineChartData">
-                    <td *ngFor="let label of LeadsDataLineChart.lineChartLabels; let j=index">{{d && d?.data[j]}}</td>
-                  </tr>
-                </tbody>
 
-              </table>
-            </div>
-          </div>
         </div>
       </div>
     </div>
 
 
-    <!-- ------------------ pie chart for leads and campaign ------------------- -->
-    <div class="leads-table-wrapper">
-      <div class="lead-title dashboard-title">
-        <div class="col-sm-12">
-          <h4>
-            Revenu Informatio
-          </h4>
-        </div>
 
-      </div>
-      <div class="row mx-0">
-        <div class="col-lg-6 col-md-12 col-sm-12">
-          <div class="card table-responsive">
-            <div class="card chartItem">
-              <div class="item">
-                <canvas baseChart [data]="MaximumLeadPieChart.pieChartData"
-                  [labels]="MaximumLeadPieChart.pieChartLabels" [chartType]="MaximumLeadPieChart.pieChartType"
-                  [options]="MaximumLeadPieChart.pieChartOptions" [plugins]="MaximumLeadPieChart.pieChartPlugins"
-                  [colors]="MaximumLeadPieChart.pieChartColors" [legend]="MaximumLeadPieChart.pieChartLegend">
-                </canvas>
-
-                <table class="table thead-light table-borderless table-hover">
-                  <thead>
-                    <tr>
-                      <th>
-                        id
-                      </th>
-                      <th>
-                        Campaign Name
-                      </th>
-
-                      <th>
-                        Leads
-                      </th>
-
-                      <th>
-                        Appointment Booked
-                      </th>
-                      <th>
-                        Ads Spent(Cost)
-                      </th>
-
-                      <th>
-                        Revenu Earned
-                      </th>
-
-
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr style="cursor: pointer;">
-                      <td>1</td>
-                      <td>Campaign</td>
-                      <td>250</td>
-                      <td>40</td>
-                      <td>$300</td>
-                      <td>$600</td>
-                    </tr>
-
-
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-6 col-md-12 col-sm-12">
-          <div class="card chartItem">
-            <div class="item">
-              <canvas baseChart [data]="MaximumLeadPieChart.pieChartData" [labels]="MaximumLeadPieChart.pieChartLabels"
-                [chartType]="MaximumLeadPieChart.pieChartType" [options]="MaximumLeadPieChart.pieChartOptions"
-                [plugins]="MaximumLeadPieChart.pieChartPlugins" [colors]="MaximumLeadPieChart.pieChartColors"
-                [legend]="MaximumLeadPieChart.pieChartLegend">
-              </canvas>
-
-              <table class="table thead-light table-borderless table-hover">
-                <thead>
-                  <tr>
-                    <th>
-                      id
-                    </th>
-                    <th>
-                      Lead Count
-                    </th>
-                    <th>
-                      Campaign Name
-                    </th>
-
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr style="cursor: pointer;">
-                    <td>1</td>
-                    <td>3</td>
-                    <td>Campaign1</td>
-                  </tr>
-
-                  <tr style="cursor: pointer;">
-                    <td>1</td>
-                    <td>3</td>
-                    <td>Google Ads</td>
-                  </tr>
-
-                  <tr style="cursor: pointer;">
-                    <td>1</td>
-                    <td>3</td>
-                    <td>Facebooks</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- ----------------------------- cpl starts ------------------------------ -->
     <div class="leads-table-wrapper">
@@ -441,9 +346,7 @@
               <table class="table thead-light table-borderless table-hover">
                 <thead>
                   <tr>
-                    <th>
-                      id
-                    </th>
+
                     <th>
                       Campaign Name
                     </th>
@@ -454,6 +357,12 @@
                       Lead Generated
                     </th>
                     <th>
+                      Appointment Booked
+                    </th>
+                    <th>
+                      Revenu Earned
+                    </th>
+                    <th>
                       CPL
                     </th>
 
@@ -461,22 +370,26 @@
                 </thead>
                 <tbody>
                   <tr *ngFor="let data of cplData">
-                    <td>
-                      1
-                    </td>
+
                     <td>
 
                       {{data?.cname}}
                     </td>
 
+
+                    <td>
+                      {{data.lead}}
+                    </td>
+                    <td>
+                      {{data.appointment}}
+                    </td>
                     <td>
                       {{data.cost}}
                     </td>
 
                     <td>
-                      {{data.lead}}
+                      {{data.revenuEarned}}
                     </td>
-
                     <td>
                       {{(data.cost/ data.lead) | number : '1.0-2'}}
                     </td>
@@ -517,8 +430,13 @@
                     <th>
                       Campaign Name
                     </th>
+                    <th>
+                      Channel Name
+                    </th>
 
-
+                    <th>
+                      Created Date
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -526,18 +444,107 @@
                     <td>1</td>
                     <td>Test Lead1</td>
                     <td>Campaign1</td>
+                    <td>Chhannnel</td>
+                    <td>13 Jun 2022</td>
                   </tr>
 
                   <tr style="cursor: pointer;">
                     <td>1</td>
                     <td>Lead Name2</td>
                     <td>Google Ads</td>
+                    <td>Chhannnel</td>
+                    <td>13 Jun 2022</td>
                   </tr>
 
                   <tr style="cursor: pointer;">
                     <td>1</td>
                     <td>Lead3</td>
                     <td>Facebooks</td>
+                    <td>Chhannnel</td>
+                    <td>13 Jun 2022</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="leads-table-wrapper">
+      <div class="lead-title dashboard-title">
+        <div class="col-sm-12">
+          <h4>
+            Appointment Data
+          </h4>
+        </div>
+
+      </div>
+      <div class="row mx-0">
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="card chartItem">
+            <div class="item">
+              <table id="datatable" datatable class="table thead-light table-borderless table-hover">
+                <thead>
+                  <tr>
+                    <th>
+                      id
+                    </th>
+                    <th>
+                      Patient Name
+                    </th>
+                    <th>
+                      Campaign Name
+                    </th>
+                    <th>
+                      Channel Name
+                    </th>
+
+                    <th>
+                      Service Name
+                    </th>
+
+                    <th>
+                      Payment Status
+                    </th>
+
+
+
+                    <th>
+                      Created Date
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="cursor: pointer;">
+                    <td>1</td>
+                    <td>Test _Paitent</td>
+                    <td>Campaign1</td>
+                    <td>Chhannnel</td>
+                    <td>Botox</td>
+                    <td>Paid</td>
+                    <td>13 Jun 2022</td>
+                  </tr>
+
+                  <tr style="cursor: pointer;">
+                    <td>1</td>
+                    <td>Lead Name2</td>
+                    <td>Google Ads</td>
+                    <td>Chhannnel</td>
+                    <td>Botox</td>
+                    <td>Pending</td>
+                    <td>13 Jun 2022</td>
+                  </tr>
+
+                  <tr style="cursor: pointer;">
+                    <td>1</td>
+                    <td>Lead3</td>
+                    <td>Facebooks</td>
+                    <td>Chhannnel</td>
+                    <td>Botox</td>
+                    <td>Paid</td>
+                    <td>13 Jun 2022</td>
                   </tr>
                 </tbody>
               </table>

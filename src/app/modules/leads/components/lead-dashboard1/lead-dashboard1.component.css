@@ -1,0 +1,179 @@
+.bg-white {
+  background: #f7f9fc !important;
+  padding: 0em 0 8em;
+}
+
+.info-icon {
+  padding: 1px 8px;
+  background: gainsboro;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.info-icon .fa {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.leads-stats .title h3 {
+  font-size: 28px;
+  font-weight: 500;
+  padding-left: 15px;
+}
+
+.leads-stats .title {
+  padding: 1em;
+  box-shadow: inset 0 0 0 1px #ebeef1;
+  margin-bottom: 1em;
+  border-bottom: 0;
+  box-shadow: 0 0 2rem 0 rgb(41 48 66 / 10%);
+}
+
+.card.lead-card {
+  background-clip: border-box;
+  border-radius: 0.65rem;
+  height: 100%;
+  margin: 0;
+  border-bottom: 0;
+  box-shadow: 0 0 2rem 0 rgb(41 48 66 / 10%);
+}
+
+.card.lead-card .muted-text {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.card.lead-card .count {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.flex-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.percentage {
+  padding-top: 2em;
+}
+
+.percentage .bg-increase {
+  padding: 2px 8px;
+  background-color: #d7f7c2;
+  color: #17751c;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 4px;
+  margin-right: 4px;
+}
+
+.percentage {
+  color: #8d929c;
+  font-weight: 500;
+  font-size: 14px;
+  color: #6c757d
+}
+
+.stat {
+  background: #f4efe9;
+  border-radius: 50%;
+  padding: 0.75rem;
+  width: 48px;
+  height: 48px;
+}
+
+.badge-soft-success {
+  background-color: rgba(75, 191, 115, .175);
+  color: color-yiq(rgba(75, 191, 115, .175));
+  color: #4bbf73;
+  font-size: 14px;
+}
+
+.line-chart canvas {
+  min-height: 420px;
+}
+
+.dashboard-title {
+  border-bottom: 1px solid #e3ebf6;
+  margin-bottom: 1em;
+}
+
+.dashboard-title h4 {
+  font-size: 22px;
+  padding: 10px 5px;
+}
+
+.leads-table-wrapper {
+  padding: 15px;
+  margin-top: 2em;
+}
+
+leads-table-wrapper .card .item {
+  padding: 1em;
+  min-height: 300px;
+}
+
+.leads-table-wrapper .chartItem,
+.leads-table-wrapper .chartItem .item {
+  height: auto;
+}
+
+.leads-table-wrapper th {
+  font-weight: 600 !important;
+  font-size: 14px;
+  border-bottom: 2px solid #e3ebf6;
+}
+
+.leads-table-wrapper tr:nth-child(even) td {
+  border-color: #dee6ed;
+  background-color: #f7f9fc;
+}
+
+.leads-table-wrapper td {
+  border-top: 1px solid #e3ebf6;
+  font-size: 14px;
+}
+
+.leads-table-wrapper {
+  margin-top: 2em;
+}
+
+.thead-light thead {
+  background: #eff7ff;
+}
+
+.card {
+  background-clip: border-box;
+  border: 1px solid #edf2f9 !important;
+  border-radius: 0.65rem;
+  box-shadow: 0 0 0.875rem 0 rgb(41 48 66 / 5%);
+  height: 100%;
+  margin: 0;
+}
+
+hr {
+  border: 1px solid gainsboro;
+}
+
+.flex-grow-1 {
+  font-size: 14px;
+}
+
+canvas {
+  min-height: 300px;
+  padding: 1em;
+  max-height: 300px;
+}
+
+.filters {
+  display: flex;
+  justify-content: flex-end;
+  row-gap: 1em;
+  column-gap: 1em;
+}
+
+::ng-deep .bs-datepicker,
+.bs-datepicker {
+  right: -6em;
+  position: absolute !important;
+}

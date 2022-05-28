@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { ChartOptions, ChartType } from 'chart.js';
+import { ChartType, ChartOptions } from 'chart.js';
 import { Label, SingleDataSet } from 'ng2-charts';
 
 @Component({
-  selector: 'app-leads-dashboard',
-  templateUrl: './leads-dashboard.component.html',
-  styleUrls: ['./leads-dashboard.component.css']
+  selector: 'app-lead-dashboard1',
+  templateUrl: './lead-dashboard1.component.html',
+  styleUrls: ['./lead-dashboard1.component.css']
 })
-export class LeadsDashboardComponent {
+export class LeadDashboard1Component {
   /* --------------------------- Bar chart for leads -------------------------- */
   LeadsDataLineChart: any;
   CplDataChart: any;
@@ -15,46 +15,22 @@ export class LeadsDashboardComponent {
     {
       cost: 30,
       lead: 20,
+      appointment: 20,
+      revenuEarned: 20,
       cname: 'Campaign1'
-    },
-    {
-      cost: 80,
-      lead: 24,
-      cname: 'Campaign2'
-    },
-    {
-      cost: 50,
-      lead: 18,
-      cname: 'Campaign3'
-    },
-    {
-      cost: 20,
-      lead: 50,
-      cname: 'Campaign4'
-    },
-    {
-      cost: 42,
-      lead: 40,
-      cname: 'Campaign5'
     }
   ];
   CplChartData = [
     {
-      data: [30, 80, 50, 20, 42],
-      label: 'Cost per Campaign'
+      data: [0, 25],
+      label: 'Revenu Spent'
     },
     {
-      data: [20, 24, 18, 50, 40],
-      label: 'Leads Per Month'
+      data: [0, 50],
+      label: 'Revenue Earned'
     }
   ];
-  CplChartLabel = [
-    'Campaign1',
-    'Campaign2',
-    'Campaign3',
-    'Campaign4',
-    'Campaign5'
-  ];
+  CplChartLabel = ['Revenu Spent', 'Revenu Earned'];
   public lineChartData: Array<any> = [
     {
       data: [65, 59, 80, 81, 56, 55, 40, 59, 80, 81, 56, 55, 40],
