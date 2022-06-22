@@ -1,16 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ChartType, ChartOptions } from 'chart.js';
+import * as moment from 'moment-timezone';
 import { Label, SingleDataSet } from 'ng2-charts';
+import { ToasTMessageService } from 'src/app/shared/services/toast-message.service';
+import { LeadServiceService } from '../../services/lead-service.service';
 
 @Component({
   selector: 'app-lead-dashboard1',
   templateUrl: './lead-dashboard1.component.html',
   styleUrls: ['./lead-dashboard1.component.css']
 })
-export class LeadDashboard1Component {
+export class LeadDashboard1Component implements OnInit {
   /* --------------------------- Bar chart for leads -------------------------- */
   LeadsDataLineChart: any;
+  filter: any = {
+    campaignname: '',
+    startDate: '',
+    endDate: ''
+  };
+
+  leadData: any = [];
   CplDataChart: any;
+  CampaignList: any;
   cplData: any = [
     {
       cost: 30,
@@ -174,7 +185,10 @@ export class LeadDashboard1Component {
   ];
   MaximumLeadPieChart: any;
   leadsData: any;
-  constructor() {
+  constructor(
+    private leadService: LeadServiceService,
+    private toastService: ToasTMessageService
+  ) {
     this.LeadsDataLineChart = {
       lineChartColors: this.lineChartColors,
       lineChartType: this.lineChartType,
@@ -201,5 +215,68 @@ export class LeadDashboard1Component {
       pieChartPlugins: this.pieChartPlugins,
       pieChartColors: this.pieChartColors
     };
+  }
+  ngOnInit(): void {
+    this.loadCampaignList();
+    this.loadLeads();
+  }
+
+  loadLeads() {
+    this.leadService.getLeads().then(
+      (data: any) => {
+        console.log(data);
+        this.leadData = data.result.data;
+        console.log(data.result);
+      },
+      (e) => {
+        console.log(e);
+      }
+    );
+  }
+  loadCampaignList() {
+    this.leadService.getCampaignList().then(
+      (data: any) => {
+        console.log(data);
+        this.CampaignList = data?.result;
+      },
+      (e) => {
+        console.log(e);
+      }
+    );
+  }
+
+  onChange(e: any) {
+    console.log(e);
+    const filterObj = {
+      campaignname: e,
+      startDate: this.filter.startDate ?? '',
+      endDate: this.filter.endDate ?? ''
+    };
+    this.leadService.getCampaignListByFilter(filterObj).then(
+      (data: any) => {
+        this.leadData = data.result;
+        console.log(data.result);
+      },
+      (e) => {
+        console.log(e);
+      }
+    );
+  }
+
+  onDateSelect(e: any) {
+    console.log(e);
+    this.filter.startDate = moment(e[0]).format('YYYY-MM-DD');
+    this.filter.endDate = moment(e[1]).format('YYYY-MM-DD');
+    console.log(this.filter);
+    this.filter.campaignname = this.filter.campaignname ?? null;
+    this.leadService.getCampaignListByFilter(this.filter).then(
+      (data: any) => {
+        this.leadData = data.result;
+        console.log(data.result);
+      },
+      (e) => {
+        console.log(e);
+      }
+    );
   }
 }

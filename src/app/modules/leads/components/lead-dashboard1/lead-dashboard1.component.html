@@ -4,24 +4,27 @@
       <div class="title">
         <h3>Command Centre Overview</h3>
         <div class="filters">
-          <div class="form-group">
+          <!-- <div class="form-group">
             <select class="form-control">
               <option>Channel</option>
               <option>Facebook</option>
               <option>Google</option>
             </select>
-          </div>
+          </div> -->
 
           <div class="form-group">
-            <select class="form-control">
-              <option>Campaign</option>
-              <option>F1</option>
-              <option>F2</option>
+            <select class="form-control" [(ngModel)]="filter.campaignname" (ngModelChange)="onChange($event)">
+              <option value="">Select your Campaign</option>
+              <ng-container *ngFor="let campaign of CampaignList">
+                <option [value]="campaign">
+                  {{campaign}}
+                </option>
+              </ng-container>
             </select>
           </div>
 
           <div class="form-group">
-            <input type="text" placeholder="Daterangepicker" class="form-control"
+            <input type="text" placeholder="Daterangepicker" class="form-control"  (bsValueChange)="onDateSelect($event)"
               [bsConfig]="{containerClass:'theme-default'}" bsDaterangepicker />
           </div>
         </div>
@@ -421,17 +424,12 @@
               <table id="datatable" datatable class="table thead-light table-borderless table-hover">
                 <thead>
                   <tr>
-                    <th>
-                      id
-                    </th>
+
                     <th>
                       Lead Name
                     </th>
                     <th>
                       Campaign Name
-                    </th>
-                    <th>
-                      Channel Name
                     </th>
 
                     <th>
@@ -440,29 +438,13 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr style="cursor: pointer;">
-                    <td>1</td>
-                    <td>Test Lead1</td>
-                    <td>Campaign1</td>
-                    <td>Chhannnel</td>
-                    <td>13 Jun 2022</td>
+                  <tr style="cursor: pointer;" *ngFor="let data of leadData">
+                    <td>{{data?.contacts[0]?.name}}</td>
+                    <td>{{data?.name}}</td>
+                    <td>{{data?.date_created | date : 'medium'}}</td>
                   </tr>
 
-                  <tr style="cursor: pointer;">
-                    <td>1</td>
-                    <td>Lead Name2</td>
-                    <td>Google Ads</td>
-                    <td>Chhannnel</td>
-                    <td>13 Jun 2022</td>
-                  </tr>
 
-                  <tr style="cursor: pointer;">
-                    <td>1</td>
-                    <td>Lead3</td>
-                    <td>Facebooks</td>
-                    <td>Chhannnel</td>
-                    <td>13 Jun 2022</td>
-                  </tr>
                 </tbody>
               </table>
             </div>

@@ -9,7 +9,6 @@ import { AuthenticationModule } from './modules/authentication/authentication.mo
 import { SharedModule } from './shared/shared.module';
 import { ToastrModule } from 'ngx-toastr';
 import { LoaderInterceptor } from './shared/services/Interceptors/loader.interceptor';
-import { DataTablesModule } from 'angular-datatables';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { ChartsModule } from 'ng2-charts';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
@@ -25,7 +24,6 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     AuthenticationModule,
     SharedModule,
     ToastrModule.forRoot(),
-    DataTablesModule,
     NgxUiLoaderModule,
     ChartsModule,
     BsDatepickerModule.forRoot()
