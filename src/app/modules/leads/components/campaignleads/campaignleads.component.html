@@ -1,0 +1,31 @@
+<div>
+    <div class="card chartItem">
+        <div class="item">
+            <table id="datatable" datatable class="table thead-light table-borderless table-hover">
+                <thead>
+                    <tr>
+
+                        <th>
+                            Lead Name
+                        </th>
+                        <th>
+                            Campaign Name
+                        </th>
+
+                        <th>
+                            Created Date
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="cursor: pointer;" *ngFor="let data of leadData">
+                        <td>{{data?.contacts[0]?.name}}</td>
+                        <td>{{data?.name}}</td>
+                        <td>{{data?.date_created | date : 'medium'}}</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

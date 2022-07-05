@@ -8,7 +8,7 @@ export class LeadServiceService {
   constructor(private apiService: ApiService) {}
 
   getCampaignList() {
-    return this.apiService.get('/api/list-campaign', '', false);
+    return this.apiService.get('/api/leads/campaigns', '', false);
   }
 
   getLeads() {
@@ -16,6 +16,20 @@ export class LeadServiceService {
   }
 
   getCampaignListByFilter(filterObj: any) {
-    return this.apiService.post('/api/leadsFilter?', filterObj, '', false);
+    return this.apiService.get(
+      '/api/leads/leadsFilter',
+      '',
+      false,
+      {},
+      filterObj
+    );
+  }
+
+  getAppointments() {
+    return this.apiService.get('/api/appointments', '', false);
+  }
+
+  getCampaignAggregation() {
+    return this.apiService.get('/api/leads/campaigns/agg', '', false);
   }
 }

@@ -8,9 +8,14 @@ import 'chartjs-plugin-labels';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { LeadDashboard1Component } from './components/lead-dashboard1/lead-dashboard1.component';
 import { FormsModule } from '@angular/forms';
+import { CampaignleadsComponent } from './components/campaignleads/campaignleads.component';
 
 @NgModule({
-  declarations: [LeadsDashboardComponent, LeadDashboard1Component],
+  declarations: [
+    LeadsDashboardComponent,
+    LeadDashboard1Component,
+    CampaignleadsComponent
+  ],
   imports: [
     CommonModule,
     LeadsRoutingModule,
