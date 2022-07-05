@@ -13,7 +13,7 @@
           </div> -->
 
           <div class="form-group">
-            <select class="form-control" [(ngModel)]="filter.campaignname" (ngModelChange)="onChange($event)">
+            <select class="form-control" [(ngModel)]="filter.campaignName" (ngModelChange)="onChange($event)">
               <option value="">Select your Campaign</option>
               <ng-container *ngFor="let campaign of CampaignList">
                 <option [value]="campaign">
@@ -31,7 +31,9 @@
       </div>
     </div>
 
-    <div class="lead-stat-cards">
+    
+  <!-- commenting as per santhosh  -->
+    <!-- <div class="lead-stat-cards">
       <div class="row mx-0">
         <div class="col-lg-3 col-md-6 col-sm-12">
           <div class="card lead-card">
@@ -167,7 +169,7 @@
 
 
       </div>
-    </div>
+    </div> -->
 
     <!-- ------------------------- monthly leads graph ------------------------- -->
     <div class="leads-graph">
@@ -176,7 +178,7 @@
         <div class="row mx-0">
 
 
-          <div class="col-lg-8 col-md-12 col-sm-12">
+          <div class="">
             <div class="card table-responsive">
               <div class="card chartItem">
                 <div class="item">
@@ -189,9 +191,9 @@
                   <table class="table thead-light table-borderless table-hover">
                     <thead>
                       <tr>
-                        <th>
+                        <!-- <th>
                           id
-                        </th>
+                        </th> -->
                         <th>
                           Campaign Name
                         </th>
@@ -203,9 +205,10 @@
                         <th>
                           Appointment Booked
                         </th>
-                        <th>
+                        <!-- as per santhosh commented  -->
+                        <!-- <th>
                           Ads Spent(Cost)
-                        </th>
+                        </th> -->
 
                         <th>
                           Revenu Earned
@@ -215,13 +218,13 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr style="cursor: pointer;">
-                        <td>1</td>
-                        <td>Campaign</td>
-                        <td>250</td>
-                        <td>40</td>
-                        <td>$300</td>
-                        <td>$600</td>
+                      <tr style="cursor: pointer;" *ngFor="let campaign of filterCampaignAgg" (click)="onCampaignClick(campaign.campaignName)">
+                        <!-- <td>1</td> -->
+                        <td>{{campaign.campaignName}}</td>
+                        <td>{{campaign.leadCount}}</td>
+                        <td>{{campaign.appointmentBooked}}</td>
+                        <!-- <td>$300</td> -->
+                        <td>{{campaign.revenueSpend}}</td>
                       </tr>
 
 
@@ -231,7 +234,8 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-12">
+          <!-- commenting told by santhosh -->
+          <!-- <div class="col-lg-4 col-md-12">
             <div class="card chartItem line-chart">
               <div class="lead-title dashboard-title">
                 <div class="col-sm-12">
@@ -307,7 +311,7 @@
 
               </div>
             </div>
-          </div>
+          </div> -->
 
         </div>
       </div>
@@ -498,18 +502,18 @@
                     </th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody *ngFor="let appointment of appointments">
                   <tr style="cursor: pointer;">
-                    <td>1</td>
-                    <td>Test _Paitent</td>
-                    <td>Campaign1</td>
+                    <td>{{appointment?.id}}</td>
+                    <td>{{appointment?.guest?.first_name}} {{appointment?.guest?.last_name}}</td>
+                    <td>Google Ads</td>
                     <td>Chhannnel</td>
-                    <td>Botox</td>
-                    <td>Paid</td>
-                    <td>13 Jun 2022</td>
+                    <td>{{appointment?.service?.name}} </td>
+                    <td>{{appointment?.price?.sales}}</td>
+                    <td>{{appointment?.creation_date | date:'dd MM yyyy'}}</td>
                   </tr>
 
-                  <tr style="cursor: pointer;">
+                  <!-- <tr style="cursor: pointer;">
                     <td>1</td>
                     <td>Lead Name2</td>
                     <td>Google Ads</td>
@@ -517,9 +521,9 @@
                     <td>Botox</td>
                     <td>Pending</td>
                     <td>13 Jun 2022</td>
-                  </tr>
+                  </tr> -->
 
-                  <tr style="cursor: pointer;">
+                  <!-- <tr style="cursor: pointer;">
                     <td>1</td>
                     <td>Lead3</td>
                     <td>Facebooks</td>
@@ -527,7 +531,7 @@
                     <td>Botox</td>
                     <td>Paid</td>
                     <td>13 Jun 2022</td>
-                  </tr>
+                  </tr> -->
                 </tbody>
               </table>
             </div>

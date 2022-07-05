@@ -85,6 +85,7 @@ export class ApiService {
     errorMsg: any = '',
     doNotSendAuthorizationParam: boolean = false,
     headerOptions: any = {},
+    params?: any,
     loaderContinue?: any
   ) {
     return new Promise(async (resolve, reject) => {
@@ -92,8 +93,14 @@ export class ApiService {
         headerOptions,
         doNotSendAuthorizationParam
       );
+      var multiParams = {};
+      if (params) {
+        multiParams = { ...options, params };
+      } else {
+        multiParams = { ...options };
+      }
       this.http
-        .get(`${this.hostUrl}${url}`, options)
+        .get(`${this.hostUrl}${url}`, multiParams)
         .pipe(
           map((res) => {
             if (!loaderContinue) {
