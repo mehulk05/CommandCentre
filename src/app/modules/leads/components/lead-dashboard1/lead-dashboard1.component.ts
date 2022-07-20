@@ -169,10 +169,9 @@ export class LeadDashboard1Component implements OnInit {
   pieChartLabels: Label[] = [
     'Leads',
     'Appointmnent',
-    'AdMoney Spent',
     'Revenu Earned'
   ];
-  pieChartData: SingleDataSet = [25, 51, 15, 25];
+  pieChartData: SingleDataSet = [0, 0, 0];
   pieChartType: ChartType = 'doughnut';
   pieChartLegend: any = true;
   pieChartPlugins = [];
@@ -232,9 +231,8 @@ export class LeadDashboard1Component implements OnInit {
   loadLeads() {
     this.leadService.getLeads().then(
       (data: any) => {
-        console.log(data);
-        this.leadData = data.data;
-        console.log(data.result);
+        this.leadData = data.results;
+        console.log(data.results);
       },
       (e) => {
         console.log(e);
@@ -265,6 +263,7 @@ export class LeadDashboard1Component implements OnInit {
       startDate: this.filter.startDate ?? '',
       endDate: this.filter.endDate ?? ''
     };
+    this.getCampaignAgg();
     this.leadService.getCampaignListByFilter(filterObj).then(
       (data: any) => {
         this.leadData = data.results;
@@ -283,6 +282,8 @@ export class LeadDashboard1Component implements OnInit {
     this.filter.endDate = moment(e[1]).format('YYYY-MM-DD');
     console.log(this.filter);
     this.filter.campaignName = this.filter.campaignName ?? null;
+    this.getCampaignAgg();
+    this.getAppoinments();
     this.leadService.getCampaignListByFilter(this.filter).then(
       (data: any) => {
         this.leadData = data.results;
@@ -295,7 +296,7 @@ export class LeadDashboard1Component implements OnInit {
   }
 
   getAppoinments() {
-    this.leadService.getAppointments().then(
+    this.leadService.getAppointments(this.filter).then(
       (data: any) => {
         this.appointments = data.results;
         console.log(data.result);
@@ -307,10 +308,11 @@ export class LeadDashboard1Component implements OnInit {
   }
 
   getCampaignAgg() {
-    this.leadService.getCampaignAggregation().then(
+    this.leadService.getCampaignAggregation(this.filter).then(
       (data: any) => {
         this.campaignAgg = data.results;
         this.filterCampaignAgg = data.results;
+        this.setPieChartData();
         console.log(data.result);
       },
       (e) => {
@@ -335,5 +337,27 @@ export class LeadDashboard1Component implements OnInit {
     } else {
       this.filterCampaignAgg = this.campaignAgg;
     }
+  }
+
+  setPieChartData() {
+    const revenueSpend = this.filterCampaignAgg.reduce(function (result, item) {
+      return result + item.revenueSpend;
+    }, 0);
+    const totalLeadCount = this.filterCampaignAgg.reduce(function (
+      result,
+      item
+    ) {
+      return result + item.leadCount;
+    },
+    0);
+    const appointmentBooked = this.filterCampaignAgg.reduce(function (
+      result,
+      item
+    ) {
+      return result + item.appointmentBooked;
+    },
+    0);
+    this.pieChartData = [totalLeadCount, appointmentBooked, revenueSpend];
+    this.MaximumLeadPieChart.pieChartData = this.pieChartData;
   }
 }

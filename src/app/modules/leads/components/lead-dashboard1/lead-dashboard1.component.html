@@ -445,7 +445,7 @@
                   <tr style="cursor: pointer;" *ngFor="let data of leadData">
                     <td>{{data?.contacts[0]?.name}}</td>
                     <td>{{data?.name}}</td>
-                    <td>{{data?.date_created | date : 'medium'}}</td>
+                    <td>{{data?.dateCreated | date : 'medium'}}</td>
                   </tr>
 
 
@@ -504,13 +504,13 @@
                 </thead>
                 <tbody *ngFor="let appointment of appointments">
                   <tr style="cursor: pointer;">
-                    <td>{{appointment?.id}}</td>
-                    <td>{{appointment?.guest?.first_name}} {{appointment?.guest?.last_name}}</td>
+                    <td>{{appointment?.appointmentId}}</td>
+                    <td>{{appointment?.firstName}} {{appointment?.lastName}}</td>
                     <td>Google Ads</td>
                     <td>Chhannnel</td>
-                    <td>{{appointment?.service?.name}} </td>
-                    <td>{{appointment?.price?.sales}}</td>
-                    <td>{{appointment?.creation_date | date:'dd MM yyyy'}}</td>
+                    <td>{{appointment?.serviceName}} </td>
+                    <td>{{appointment?.price}}</td>
+                    <td>{{appointment?.creationDate | date:'dd MM yyyy'}}</td>
                   </tr>
 
                   <!-- <tr style="cursor: pointer;">

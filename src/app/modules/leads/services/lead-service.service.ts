@@ -8,16 +8,20 @@ export class LeadServiceService {
   constructor(private apiService: ApiService) {}
 
   getCampaignList() {
-    return this.apiService.get('/api/leads/campaigns', '', false);
+    return this.apiService.get('/v1/api/leads/campaigns', '', false);
   }
 
   getLeads() {
-    return this.apiService.get('/api/leads', '', false);
+    return this.apiService.get('/v1/api/leads', '', false);
   }
 
   getCampaignListByFilter(filterObj: any) {
+    return this.apiService.get('/v1/api/leads', '', false, {}, filterObj);
+  }
+
+  getAppointments(filterObj: any) {
     return this.apiService.get(
-      '/api/leads/leadsFilter',
+      '/v1/api/appointments',
       '',
       false,
       {},
@@ -25,11 +29,13 @@ export class LeadServiceService {
     );
   }
 
-  getAppointments() {
-    return this.apiService.get('/api/appointments', '', false);
-  }
-
-  getCampaignAggregation() {
-    return this.apiService.get('/api/leads/campaigns/agg', '', false);
+  getCampaignAggregation(filterObj: any) {
+    return this.apiService.get(
+      '/v1/api/leads/campaigns/agg',
+      '',
+      false,
+      {},
+      filterObj
+    );
   }
 }
