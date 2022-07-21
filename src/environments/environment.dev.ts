@@ -6,7 +6,7 @@ export const environment = {
   FORM_MAX_SIZE: 2097152,
 
   HOST_NAME: 'devemr.growthemr.com',
-  SERVER_API_URL: 'https://api.growthemr.com',
+  SERVER_API_URL: 'https://api.command-center.growthemr.com',
   EMR_CHAT_BOT_REGION: 'us-east-1',
   CHAT_BOT_LAMBDA_URL:
     'https://o984hip783.execute-api.us-east-1.amazonaws.com/default/MyFunction',
