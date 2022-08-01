@@ -13,6 +13,17 @@ import { LeadServiceService } from '../../services/lead-service.service';
 })
 export class LeadDashboard1Component implements OnInit {
   /* --------------------------- Bar chart for leads -------------------------- */
+  appointmentConfig = {
+    itemsPerPage: 10,
+    currentPage: 1,
+    totalItems: 10
+  };
+
+  leadConfig = {
+    itemsPerPage: 10,
+    currentPage: 1,
+    totalItems: 10
+  };
   LeadsDataLineChart: any;
   filter: any = {
     campaignName: '',
@@ -166,11 +177,7 @@ export class LeadDashboard1Component implements OnInit {
       animateRotate: true
     }
   };
-  pieChartLabels: Label[] = [
-    'Leads',
-    'Appointmnent',
-    'Revenu Earned'
-  ];
+  pieChartLabels: Label[] = ['Leads', 'Appointmnent', 'Revenu Earned'];
   pieChartData: SingleDataSet = [0, 0, 0];
   pieChartType: ChartType = 'doughnut';
   pieChartLegend: any = true;
@@ -232,6 +239,7 @@ export class LeadDashboard1Component implements OnInit {
     this.leadService.getLeads().then(
       (data: any) => {
         this.leadData = data.results;
+        this.leadConfig.totalItems = data.results.length;
         console.log(data.results);
       },
       (e) => {
@@ -299,6 +307,7 @@ export class LeadDashboard1Component implements OnInit {
     this.leadService.getAppointments(this.filter).then(
       (data: any) => {
         this.appointments = data.results;
+        this.appointmentConfig.totalItems = this.appointments.length;
         console.log(data.result);
       },
       (e) => {
@@ -359,5 +368,13 @@ export class LeadDashboard1Component implements OnInit {
     0);
     this.pieChartData = [totalLeadCount, appointmentBooked, revenueSpend];
     this.MaximumLeadPieChart.pieChartData = this.pieChartData;
+  }
+
+  pageChangedForAppointment(event: any) {
+    this.appointmentConfig.currentPage = event;
+  }
+
+  pageChangedForLead(event: any) {
+    this.leadConfig.currentPage = event;
   }
 }
