@@ -1,0 +1,63 @@
+<div class="leads-table-wrapper">
+  <div class="lead-title dashboard-title">
+    <div class="col-sm-12">
+      <h4>
+        Appointment Data
+      </h4>
+    </div>
+
+  </div>
+  <div class="row mx-0">
+
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <div class="card chartItem">
+        <div class="item">
+          <table id="datatable" datatable class="table thead-light table-borderless table-hover">
+            <thead>
+              <tr>
+                <th>
+                  id
+                </th>
+                <th>
+                  Patient Name
+                </th>
+                <th>
+                  Campaign Name
+                </th>
+                <th>
+                  Channel Name
+                </th>
+
+                <th>
+                  Service Name
+                </th>
+
+                <th>
+                  Payment Status
+                </th>
+
+
+
+                <th>
+                  Created Date
+                </th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let appointment of appointments  | paginate: appointmentConfig">
+              <tr style="cursor: pointer;">
+                <td>{{appointment?.appointmentId}}</td>
+                <td>{{appointment?.firstName}} {{appointment?.lastName}}</td>
+                <td>Google Ads</td>
+                <td>Chhannnel</td>
+                <td>{{appointment?.serviceName}} </td>
+                <td>{{appointment?.price}}</td>
+                <td>{{appointment?.creationDate | date:'dd MM yyyy'}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <pagination-controls (pageChange)="pageChangedForAppointment($event)"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

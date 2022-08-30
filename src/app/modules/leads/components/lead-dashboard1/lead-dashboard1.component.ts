@@ -3,7 +3,9 @@ import { Router } from '@angular/router';
 import { ChartType, ChartOptions } from 'chart.js';
 import * as moment from 'moment-timezone';
 import { Label, SingleDataSet } from 'ng2-charts';
+import { of } from 'rxjs';
 import { ToasTMessageService } from 'src/app/shared/services/toast-message.service';
+import { Filter } from '../../models/filter';
 import { LeadServiceService } from '../../services/lead-service.service';
 
 @Component({
@@ -13,23 +15,11 @@ import { LeadServiceService } from '../../services/lead-service.service';
 })
 export class LeadDashboard1Component implements OnInit {
   /* --------------------------- Bar chart for leads -------------------------- */
-  appointmentConfig = {
-    itemsPerPage: 10,
-    currentPage: 1,
-    totalItems: 10
-  };
 
-  leadConfig = {
-    itemsPerPage: 10,
-    currentPage: 1,
-    totalItems: 10
-  };
   LeadsDataLineChart: any;
-  filter: any = {
-    campaignName: '',
-    startDate: '',
-    endDate: ''
-  };
+  filter: Filter = new Filter();
+
+  filterObs$ = of(this.filter);
 
   leadData: any = [];
   CplDataChart: any;
@@ -230,23 +220,9 @@ export class LeadDashboard1Component implements OnInit {
   }
   ngOnInit(): void {
     this.loadCampaignList();
-    this.loadLeads();
-    this.getAppoinments();
     this.getCampaignAgg();
   }
 
-  loadLeads() {
-    this.leadService.getLeads().then(
-      (data: any) => {
-        this.leadData = data.results;
-        this.leadConfig.totalItems = data.results.length;
-        console.log(data.results);
-      },
-      (e) => {
-        console.log(e);
-      }
-    );
-  }
   loadCampaignList() {
     this.leadService.getCampaignList().then(
       (data: any) => {
@@ -262,58 +238,30 @@ export class LeadDashboard1Component implements OnInit {
   onChange(e: any) {
     console.log(e);
     if (e == '') {
-      this.loadLeads();
+      // this.loadLeads();
       this.filterCampagn();
       return;
     }
+    this.filter = new Filter();
     const filterObj = {
       campaignName: e,
       startDate: this.filter.startDate ?? '',
       endDate: this.filter.endDate ?? ''
     };
+    this.filter = filterObj;
+    this.filterObs$ = of(this.filter);
     this.getCampaignAgg();
-    this.leadService.getCampaignListByFilter(filterObj).then(
-      (data: any) => {
-        this.leadData = data.results;
-        console.log(this.leadData);
-        this.filterCampagn();
-      },
-      (e) => {
-        console.log(e);
-      }
-    );
   }
 
   onDateSelect(e: any) {
     console.log(e);
+    this.filter = new Filter();
     this.filter.startDate = moment(e[0]).format('YYYY-MM-DD');
     this.filter.endDate = moment(e[1]).format('YYYY-MM-DD');
     console.log(this.filter);
     this.filter.campaignName = this.filter.campaignName ?? null;
+    this.filterObs$ = of(this.filter);
     this.getCampaignAgg();
-    this.getAppoinments();
-    this.leadService.getCampaignListByFilter(this.filter).then(
-      (data: any) => {
-        this.leadData = data.results;
-        console.log(data.result);
-      },
-      (e) => {
-        console.log(e);
-      }
-    );
-  }
-
-  getAppoinments() {
-    this.leadService.getAppointments(this.filter).then(
-      (data: any) => {
-        this.appointments = data.results;
-        this.appointmentConfig.totalItems = this.appointments.length;
-        console.log(data.result);
-      },
-      (e) => {
-        console.log(e);
-      }
-    );
   }
 
   getCampaignAgg() {
@@ -369,12 +317,9 @@ export class LeadDashboard1Component implements OnInit {
     this.pieChartData = [totalLeadCount, appointmentBooked, revenueSpend];
     this.MaximumLeadPieChart.pieChartData = this.pieChartData;
   }
-
-  pageChangedForAppointment(event: any) {
-    this.appointmentConfig.currentPage = event;
-  }
-
-  pageChangedForLead(event: any) {
-    this.leadConfig.currentPage = event;
-  }
 }
+// export class Filter {
+//   campaignName: any;
+//   startDate: any;
+//   endDate: any;
+// }

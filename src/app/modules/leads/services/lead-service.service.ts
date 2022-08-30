@@ -11,8 +11,8 @@ export class LeadServiceService {
     return this.apiService.get('/v1/api/leads/campaigns', '', false);
   }
 
-  getLeads() {
-    return this.apiService.get('/v1/api/leads', '', false);
+  getLeads(filterObj: any) {
+    return this.apiService.get('/v1/api/leads', '', false, {}, filterObj);
   }
 
   getCampaignListByFilter(filterObj: any) {

@@ -10,12 +10,16 @@ import { LeadDashboard1Component } from './components/lead-dashboard1/lead-dashb
 import { FormsModule } from '@angular/forms';
 import { CampaignleadsComponent } from './components/campaignleads/campaignleads.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AppointmentTableComponent } from './components/appointment-table/appointment-table.component';
+import { LeadTableComponent } from './components/lead-table/lead-table.component';
 
 @NgModule({
   declarations: [
     LeadsDashboardComponent,
     LeadDashboard1Component,
-    CampaignleadsComponent
+    CampaignleadsComponent,
+    AppointmentTableComponent,
+    LeadTableComponent
   ],
   imports: [
     CommonModule,
