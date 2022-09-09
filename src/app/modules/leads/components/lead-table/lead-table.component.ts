@@ -8,40 +8,49 @@ import { LeadServiceService } from '../../services/lead-service.service';
 })
 export class LeadTableComponent implements OnInit, OnChanges {
   leadData: any;
-  // @Input() set filter(value: any) {
-  //   this.filter = value;
-  // }
-  @Input() filter: any;
-  leadConfig = {
-    itemsPerPage: 10,
-    currentPage: 1,
-    totalItems: 10
+  leadConfig: any = {
+    itemsPerPage: 25,
+    currentPage: 0
   };
+  @Input() filter: any;
+
   constructor(private leadService: LeadServiceService) {}
   ngOnChanges(): void {
     console.log(this.filter);
-    this.loadLeads();
+    this.loadLeads(this.leadConfig);
   }
 
   ngOnInit(): void {
-    console.log('here');
-    console.log('received data', this.filter);
+    this.getLeadCount();
   }
 
-  loadLeads() {
+  async getLeadCount() {
+    const countObj = await this.leadService.getLeadCount();
+    console.log('countObj', countObj);
+    this.leadConfig.totalItems = countObj?.count;
+  }
+
+  loadLeads(pageConfig: any) {
     console.log('lead clled');
-    this.leadService.getLeads(this.filter).then(
-      (data: any) => {
-        this.leadData = data.results;
-        this.leadConfig.totalItems = data.results.length;
-        console.log(data.results);
-      },
-      (e) => {
-        console.log(e);
-      }
-    );
+    this.leadData = [];
+    this.leadService
+      .getLeads(this.filter, pageConfig.currentPage, pageConfig.itemsPerPage)
+      .then(
+        (data: any) => {
+          this.leadData = data.results;
+          console.log(data.results);
+        },
+        (e) => {
+          console.log(e);
+        }
+      );
   }
   pageChangedForLead(event: any) {
+    console.log(event);
     this.leadConfig.currentPage = event;
+    const pageConfig: any = { ...this.leadConfig };
+    pageConfig.currentPage = event - 1;
+    console.log(pageConfig, this.leadConfig);
+    this.loadLeads(pageConfig);
   }
 }

@@ -29,17 +29,23 @@
               </tr>
             </thead>
             <tbody>
-              <tr style="cursor: pointer;" *ngFor="let data of leadData | paginate: leadConfig">
-                <td>{{data?.contacts[0]?.name}}</td>
-                <td>{{data?.name}}</td>
-                <td>{{data?.dateCreated | date : 'medium'}}</td>
-              </tr>
+              <ng-container *ngIf="leadData && leadData.length>0 && leadConfig.totalItems>0">
+                <tr style="cursor: pointer;" *ngFor="let data of leadData | paginate: leadConfig">
+                  <td>{{data?.contacts[0]?.name}}</td>
+                  <td>{{data?.name}}</td>
+                  <td>{{data?.dateCreated | date : 'medium'}}</td>
+                </tr>
+              </ng-container>
+
 
 
             </tbody>
           </table>
 
-          <pagination-controls (pageChange)="pageChangedForLead($event)"></pagination-controls>
+          <ng-container *ngIf="leadData && leadData.length>0 && leadConfig.totalItems>0">
+            <pagination-controls (pageChange)="pageChangedForLead($event)"></pagination-controls>
+          </ng-container>
+
         </div>
       </div>
     </div>

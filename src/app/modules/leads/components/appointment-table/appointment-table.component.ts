@@ -7,10 +7,11 @@ import { LeadServiceService } from '../../services/lead-service.service';
   styleUrls: ['./appointment-table.component.css']
 })
 export class AppointmentTableComponent implements OnInit, OnChanges {
-  appointmentConfig = {
-    itemsPerPage: 10,
-    currentPage: 1,
-    totalItems: 10
+  appointmentConfig: any = {
+    itemsPerPage: 25,
+    currentPage: 0,
+    id: 1,
+    totalItems: 0
   };
   @Input() filter: any;
   appointments: any;
@@ -18,28 +19,46 @@ export class AppointmentTableComponent implements OnInit, OnChanges {
   constructor(private leadService: LeadServiceService) {}
 
   ngOnInit(): void {
-    console.log('here');
+    this.getAppointmentCount();
   }
 
+  getAppointmentCount() {
+    const countObj = this.leadService
+      .getAppointmentCount()
+      .then((data: any) => {
+        this.appointmentConfig.totalItems = data?.count;
+      });
+    console.log('countObj', countObj.count);
+  }
   ngOnChanges(): void {
-    this.getAppoinments();
+    this.getAppoinments(this.appointmentConfig);
   }
 
-  getAppoinments() {
-    console.log('appt clled');
-    this.leadService.getAppointments(this.filter).then(
-      (data: any) => {
-        this.appointments = data.results;
-        this.appointmentConfig.totalItems = this.appointments.length;
-        console.log(data.result);
-      },
-      (e: any) => {
-        console.log(e);
-      }
-    );
+  getAppoinments(pageConfig: any) {
+    console.log('appt clled', pageConfig);
+    this.appointments = [];
+    this.leadService
+      .getAppointments(
+        this.filter,
+        pageConfig.currentPage,
+        pageConfig.itemsPerPage
+      )
+      .then(
+        (data: any) => {
+          this.appointments = data.results;
+          console.log(data.result);
+        },
+        (e: any) => {
+          console.log(e);
+        }
+      );
   }
 
   pageChangedForAppointment(event: any) {
     this.appointmentConfig.currentPage = event;
+    const pageConfig: any = { ...this.appointmentConfig };
+    pageConfig.currentPage = event - 1;
+    console.log(pageConfig, this.appointmentConfig);
+    this.getAppoinments(pageConfig);
   }
 }

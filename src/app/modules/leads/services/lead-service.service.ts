@@ -11,17 +11,34 @@ export class LeadServiceService {
     return this.apiService.get('/v1/api/leads/campaigns', '', false);
   }
 
-  getLeads(filterObj: any) {
-    return this.apiService.get('/v1/api/leads', '', false, {}, filterObj);
+  getLeads(filterObj: any, page: number = 0, size: number) {
+    filterObj = this.handleEmptyFeilds(filterObj);
+    return this.apiService.get(
+      '/v1/api/leads?page=' + page + '&size=' + size,
+      '',
+      false,
+      {},
+      filterObj
+    );
+  }
+
+  getLeadCount(): any {
+    return this.apiService.get('/v1/api/leads/count', '', false, {});
+  }
+
+  getAppointmentCount(): any {
+    return this.apiService.get('/v1/api/appointments/count', '', false, {});
   }
 
   getCampaignListByFilter(filterObj: any) {
+    filterObj = this.handleEmptyFeilds(filterObj);
     return this.apiService.get('/v1/api/leads', '', false, {}, filterObj);
   }
 
-  getAppointments(filterObj: any) {
+  getAppointments(filterObj: any, page: number = 0, size: number) {
+    filterObj = this.handleEmptyFeilds(filterObj);
     return this.apiService.get(
-      '/v1/api/appointments',
+      '/v1/api/appointments?page=' + page + '&size=' + size,
       '',
       false,
       {},
@@ -30,6 +47,7 @@ export class LeadServiceService {
   }
 
   getCampaignAggregation(filterObj: any) {
+    filterObj = this.handleEmptyFeilds(filterObj);
     return this.apiService.get(
       '/v1/api/leads/campaigns/agg',
       '',
@@ -37,5 +55,19 @@ export class LeadServiceService {
       {},
       filterObj
     );
+  }
+
+  handleEmptyFeilds(params: any) {
+    const updatedParams: any = {};
+    if (params.campaignName) {
+      updatedParams['campaignName'] = params.campaignName;
+    }
+
+    if (params.startDate && params.endDate) {
+      updatedParams['startDate'] = params.startDate;
+      updatedParams['endDate'] = params.endDate;
+    }
+
+    return updatedParams;
   }
 }

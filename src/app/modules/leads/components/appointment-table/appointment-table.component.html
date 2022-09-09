@@ -43,19 +43,25 @@
                 </th>
               </tr>
             </thead>
-            <tbody *ngFor="let appointment of appointments  | paginate: appointmentConfig">
-              <tr style="cursor: pointer;">
-                <td>{{appointment?.appointmentId}}</td>
-                <td>{{appointment?.firstName}} {{appointment?.lastName}}</td>
-                <td>Google Ads</td>
-                <td>Chhannnel</td>
-                <td>{{appointment?.serviceName}} </td>
-                <td>{{appointment?.price}}</td>
-                <td>{{appointment?.creationDate | date:'dd MM yyyy'}}</td>
-              </tr>
-            </tbody>
+            <ng-container *ngIf="appointments && appointments.length>0 && appointmentConfig.totalItems>0">
+              <tbody *ngFor="let appointment of appointments  | paginate: appointmentConfig" >
+                <tr style="cursor: pointer;">
+                  <td>{{appointment?.appointmentId}}</td>
+                  <td>{{appointment?.firstName}} {{appointment?.lastName}}</td>
+                  <td>Google Ads</td>
+                  <td>Chhannnel</td>
+                  <td>{{appointment?.serviceName}} </td>
+                  <td>{{appointment?.price}}</td>
+                  <td>{{appointment?.creationDate | date:'dd MM yyyy'}}</td>
+                </tr>
+              </tbody>
+            </ng-container>
+
           </table>
-          <pagination-controls (pageChange)="pageChangedForAppointment($event)"></pagination-controls>
+          <ng-container *ngIf="appointments && appointments.length>0 && appointmentConfig.totalItems>0">
+            <pagination-controls (pageChange)="pageChangedForAppointment($event)" id="1"></pagination-controls>
+          </ng-container>
+
         </div>
       </div>
     </div>
