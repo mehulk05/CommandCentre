@@ -28,6 +28,13 @@ export class LeadDashboard1Component implements OnInit {
   campaignAgg: any[] = [];
   filterCampaignAgg: any[] = [];
 
+  leadCampaignConfig: any = {
+    itemsPerPage: 10,
+    currentPage: 0,
+    id: 1,
+    totalItems: 0
+  };
+
   cplData: any = [
     {
       cost: 30,
@@ -220,7 +227,7 @@ export class LeadDashboard1Component implements OnInit {
   }
   ngOnInit(): void {
     this.loadCampaignList();
-    this.getCampaignAgg();
+    this.getCampaignAgg(this.leadCampaignConfig);
   }
 
   loadCampaignList() {
@@ -246,11 +253,12 @@ export class LeadDashboard1Component implements OnInit {
     const filterObj = {
       campaignName: e,
       startDate: this.filter.startDate ?? '',
-      endDate: this.filter.endDate ?? ''
+      endDate: this.filter.endDate ?? '',
     };
     this.filter = filterObj;
     this.filterObs$ = of(this.filter);
-    this.getCampaignAgg();
+    this.getCampaignAgg(this.leadCampaignConfig);
+    this.getLeadCampaignCount()
   }
 
   onDateSelect(e: any) {
@@ -261,11 +269,23 @@ export class LeadDashboard1Component implements OnInit {
     console.log(this.filter);
     this.filter.campaignName = this.filter.campaignName ?? null;
     this.filterObs$ = of(this.filter);
-    this.getCampaignAgg();
+    this.getCampaignAgg(this.leadCampaignConfig);
   }
 
-  getCampaignAgg() {
-    this.leadService.getCampaignAggregation(this.filter).then(
+  getLeadCampaignCount() {
+    const countObj = this.leadService
+      .getLeadCampaignCount(this.filter)
+      .then((data: any) => {
+        this.leadCampaignConfig.totalItems = data?.count;
+      });
+    console.log('countObj', countObj.count);
+  }
+
+  getCampaignAgg(pageConfig: any) {
+    this.leadService.getCampaignAggregation(
+      this.filter,
+      pageConfig.currentPage,
+      pageConfig.itemsPerPage).then(
       (data: any) => {
         this.campaignAgg = data.results;
         this.filterCampaignAgg = data.results;
@@ -277,6 +297,15 @@ export class LeadDashboard1Component implements OnInit {
       }
     );
   }
+
+  pageChangedForLeadCampaign(event: any) {
+    this.leadCampaignConfig.currentPage = event;
+    const pageConfig: any = { ...this.leadCampaignConfig };
+    pageConfig.currentPage = event - 1;
+    console.log(pageConfig, this.leadCampaignConfig);
+    this.getCampaignAgg(pageConfig);
+  }
+
   onCampaignClick(name: any) {
     this.router.navigate(['leads/campaign'], {
       queryParams: { campaignName: name }

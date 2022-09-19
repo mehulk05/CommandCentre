@@ -223,6 +223,9 @@
 
                     </tbody>
                   </table>
+                  <ng-container *ngIf="filterCampaignAgg && filterCampaignAgg.length>0 && leadCampaignConfig.totalItems>0">
+                    <pagination-controls (pageChange)="pageChangedForLeadCampaign($event)" id="1"></pagination-controls>
+                  </ng-container>
                 </div>
               </div>
             </div>
@@ -314,7 +317,7 @@
 
 
     <!-- ----------------------------- cpl starts ------------------------------ -->
-    <div class="leads-table-wrapper">
+    <!-- <div class="leads-table-wrapper">
       <div class="lead-title dashboard-title">
         <div class="col-sm-12">
           <h4>
@@ -400,7 +403,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- ----------------------------- Leads table ----------------------------- -->
 

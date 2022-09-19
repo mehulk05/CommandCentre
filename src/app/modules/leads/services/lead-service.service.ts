@@ -22,12 +22,16 @@ export class LeadServiceService {
     );
   }
 
-  getLeadCount(): any {
-    return this.apiService.get('/v1/api/leads/count', '', false, {});
+  getLeadCount(filterObj: any): any {
+    return this.apiService.get('/v1/api/leads/count', '', false, {}, filterObj);
   }
 
-  getAppointmentCount(): any {
-    return this.apiService.get('/v1/api/appointments/count', '', false, {});
+  getAppointmentCount(filterObj: any): any {
+    return this.apiService.get('/v1/api/appointments/count', '', false, {}, filterObj);
+  }
+
+  getLeadCampaignCount(filterObj: any): any {
+    return this.apiService.get('/v1/api/leads/campaigns/agg/count', '', false, {}, filterObj);
   }
 
   getCampaignListByFilter(filterObj: any) {
@@ -46,10 +50,10 @@ export class LeadServiceService {
     );
   }
 
-  getCampaignAggregation(filterObj: any) {
+  getCampaignAggregation(filterObj: any, page: number = 0, size: number) {
     filterObj = this.handleEmptyFeilds(filterObj);
     return this.apiService.get(
-      '/v1/api/leads/campaigns/agg',
+      '/v1/api/leads/campaigns/agg?page=' + page + '&size=' + size,
       '',
       false,
       {},

@@ -24,7 +24,7 @@ export class AppointmentTableComponent implements OnInit, OnChanges {
 
   getAppointmentCount() {
     const countObj = this.leadService
-      .getAppointmentCount()
+      .getAppointmentCount(this.filter)
       .then((data: any) => {
         this.appointmentConfig.totalItems = data?.count;
       });

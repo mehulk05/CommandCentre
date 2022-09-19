@@ -25,7 +25,7 @@ export class LeadTableComponent implements OnInit, OnChanges {
   }
 
   async getLeadCount() {
-    const countObj = await this.leadService.getLeadCount();
+    const countObj = await this.leadService.getLeadCount(this.filter);
     console.log('countObj', countObj);
     this.leadConfig.totalItems = countObj?.count;
   }
