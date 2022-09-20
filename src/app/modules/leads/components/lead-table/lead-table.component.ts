@@ -17,6 +17,7 @@ export class LeadTableComponent implements OnInit, OnChanges {
   constructor(private leadService: LeadServiceService) {}
   ngOnChanges(): void {
     console.log(this.filter);
+    this.getLeadCount();
     this.loadLeads(this.leadConfig);
   }
 

@@ -31,6 +31,7 @@ export class AppointmentTableComponent implements OnInit, OnChanges {
     console.log('countObj', countObj.count);
   }
   ngOnChanges(): void {
+    this.getAppointmentCount();
     this.getAppoinments(this.appointmentConfig);
   }
 

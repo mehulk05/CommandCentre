@@ -46,7 +46,7 @@
                 <tr style="cursor: pointer;">
                   <td>{{appointment?.appointmentId}}</td>
                   <td>{{appointment?.firstName}} {{appointment?.lastName}}</td>
-                  <td>{{appointment?.leadData != null ? appointment?.leadData[0].name : ''}}</td>
+                  <td>{{appointment?.leadData != null &&  appointment?.leadData.length > 0 ? appointment?.leadData[0].name : ''}}</td>
                   <td>{{appointment?.serviceName}} </td>
                   <td>{{appointment?.price}}</td>
                   <td>{{appointment?.creationDate | date:'dd MM yyyy'}}</td>
