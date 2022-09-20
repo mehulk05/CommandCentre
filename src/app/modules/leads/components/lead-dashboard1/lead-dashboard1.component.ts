@@ -249,12 +249,6 @@ export class LeadDashboard1Component implements OnInit {
 
   onChange(e: any) {
     console.log(e);
-    if (e == '') {
-      // this.loadLeads();
-      this.filterCampagn();
-      return;
-    }
-    this.filter = new Filter();
     const filterObj = {
       campaignName: e,
       startDate: this.filter.startDate ?? '',
@@ -262,18 +256,29 @@ export class LeadDashboard1Component implements OnInit {
     };
     this.filter = filterObj;
     this.filterObs$ = of(this.filter);
+    this.resetCounters();
     this.getCampaignAgg(this.leadCampaignConfig);
+    this.getChartData();
     this.getLeadCampaignCount();
+  }
+
+  resetCounters() {
+    this.leadCampaignConfig = {
+      itemsPerPage: 10,
+      currentPage: 0,
+      id: 1,
+      totalItems: 0
+    };
   }
 
   onDateSelect(e: any) {
     console.log(e);
-    this.filter = new Filter();
     this.filter.startDate = moment(e[0]).format('YYYY-MM-DD');
     this.filter.endDate = moment(e[1]).format('YYYY-MM-DD');
+    this.filter = { ...this.filter };
     console.log(this.filter);
-    this.filter.campaignName = this.filter.campaignName ?? null;
     this.filterObs$ = of(this.filter);
+    this.getLeadCampaignCount();
     this.getCampaignAgg(this.leadCampaignConfig);
     this.getChartData();
   }
@@ -300,7 +305,6 @@ export class LeadDashboard1Component implements OnInit {
           this.loadTable = false;
           this.campaignAgg = data.results;
           this.filterCampaignAgg = data.results;
-          console.log(data.result);
         },
         (e) => {
           this.loadTable = false;
