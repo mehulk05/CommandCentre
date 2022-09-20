@@ -175,6 +175,7 @@
             <div class="card table-responsive">
               <div class="card chartItem">
                 <div class="item">
+                  <div class="loader" *ngIf="chartData"></div>
                   <canvas baseChart [data]="MaximumLeadPieChart.pieChartData"
                     [labels]="MaximumLeadPieChart.pieChartLabels" [chartType]="MaximumLeadPieChart.pieChartType"
                     [options]="MaximumLeadPieChart.pieChartOptions" [plugins]="MaximumLeadPieChart.pieChartPlugins"
@@ -182,6 +183,8 @@
                   </canvas>
 
                   <table class="table thead-light table-borderless table-hover">
+                    <div class="loader" *ngIf="loadTable"></div>
+
                     <thead>
                       <tr>
                         <!-- <th>
@@ -210,8 +213,9 @@
 
                       </tr>
                     </thead>
+                    <ng-container *ngIf="filterCampaignAgg && filterCampaignAgg.length>0 && leadCampaignConfig.totalItems>0">
                     <tbody>
-                      <tr style="cursor: pointer;" *ngFor="let campaign of filterCampaignAgg" (click)="onCampaignClick(campaign.campaignName)">
+                      <tr style="cursor: pointer;" *ngFor="let campaign of filterCampaignAgg  | paginate: leadCampaignConfig" (click)="onCampaignClick(campaign.campaignName)">
                         <!-- <td>1</td> -->
                         <td>{{campaign.campaignName}}</td>
                         <td>{{campaign.leadCount}}</td>
@@ -222,8 +226,9 @@
 
 
                     </tbody>
+                    </ng-container>
                   </table>
-                  <ng-container *ngIf="filterCampaignAgg && filterCampaignAgg.length>0 && leadCampaignConfig.totalItems>0">
+                  <ng-container *ngIf="filterCampaignAgg.length>0 && leadCampaignConfig.totalItems>0">
                     <pagination-controls (pageChange)="pageChangedForLeadCampaign($event)" id="1"></pagination-controls>
                   </ng-container>
                 </div>

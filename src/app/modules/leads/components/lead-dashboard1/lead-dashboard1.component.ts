@@ -21,6 +21,9 @@ export class LeadDashboard1Component implements OnInit {
 
   filterObs$ = of(this.filter);
 
+  loadTable = false;
+  chartData = false;
+
   leadData: any = [];
   CplDataChart: any;
   CampaignList: any;
@@ -226,8 +229,10 @@ export class LeadDashboard1Component implements OnInit {
     };
   }
   ngOnInit(): void {
+    this.getLeadCampaignCount();
     this.loadCampaignList();
     this.getCampaignAgg(this.leadCampaignConfig);
+    this.getChartData();
   }
 
   loadCampaignList() {
@@ -270,6 +275,7 @@ export class LeadDashboard1Component implements OnInit {
     this.filter.campaignName = this.filter.campaignName ?? null;
     this.filterObs$ = of(this.filter);
     this.getCampaignAgg(this.leadCampaignConfig);
+    this.getChartData();
   }
 
   getLeadCampaignCount() {
@@ -282,17 +288,19 @@ export class LeadDashboard1Component implements OnInit {
   }
 
   getCampaignAgg(pageConfig: any) {
+    this.loadTable = true;
     this.leadService.getCampaignAggregation(
       this.filter,
       pageConfig.currentPage,
       pageConfig.itemsPerPage).then(
       (data: any) => {
+        this.loadTable = false;
         this.campaignAgg = data.results;
         this.filterCampaignAgg = data.results;
-        this.setPieChartData();
         console.log(data.result);
       },
       (e) => {
+        this.loadTable = false;
         console.log(e);
       }
     );
@@ -325,26 +333,42 @@ export class LeadDashboard1Component implements OnInit {
     }
   }
 
-  setPieChartData() {
-    const revenueSpend = this.filterCampaignAgg.reduce(function (result, item) {
-      return result + item.revenueSpend;
-    }, 0);
-    const totalLeadCount = this.filterCampaignAgg.reduce(function (
-      result,
-      item
-    ) {
-      return result + item.leadCount;
-    },
-    0);
-    const appointmentBooked = this.filterCampaignAgg.reduce(function (
-      result,
-      item
-    ) {
-      return result + item.appointmentBooked;
-    },
-    0);
-    this.pieChartData = [totalLeadCount, appointmentBooked, revenueSpend];
+  setPieChartData(data: any) {
+    // const revenueSpend = this.filterCampaignAgg.reduce(function (result, item) {
+    //   return result + item.revenueSpend;
+    // }, 0);
+    // const totalLeadCount = this.filterCampaignAgg.reduce(function (
+    //   result,
+    //   item
+    // ) {
+    //   return result + item.leadCount;
+    // },
+    // 0);
+    // const appointmentBooked = this.filterCampaignAgg.reduce(function (
+    //   result,
+    //   item
+    // ) {
+    //   return result + item.appointmentBooked;
+    // },
+    // 0);
+    this.pieChartData = [data.leadCount, data.appointmentBooked, data.revenueEarned];
     this.MaximumLeadPieChart.pieChartData = this.pieChartData;
+  }
+
+
+  getChartData() {
+    this.chartData = true;
+    this.leadService.getChartData(
+      this.filter).then(
+      (data: any) => {
+        this.chartData = false;
+        this.setPieChartData(data);
+      },
+      (e) => {
+        this.chartData = false;
+        console.log(e);
+      }
+    );
   }
 }
 // export class Filter {

@@ -15,7 +15,7 @@ export class AppointmentTableComponent implements OnInit, OnChanges {
   };
   @Input() filter: any;
   appointments: any;
-
+  loadTable = false;
   constructor(private leadService: LeadServiceService) {}
 
   ngOnInit(): void {
@@ -36,6 +36,7 @@ export class AppointmentTableComponent implements OnInit, OnChanges {
 
   getAppoinments(pageConfig: any) {
     console.log('appt clled', pageConfig);
+    this.loadTable = true;
     this.appointments = [];
     this.leadService
       .getAppointments(
@@ -45,10 +46,12 @@ export class AppointmentTableComponent implements OnInit, OnChanges {
       )
       .then(
         (data: any) => {
+          this.loadTable = false;
           this.appointments = data.results;
           console.log(data.result);
         },
         (e: any) => {
+          this.loadTable = false;
           console.log(e);
         }
       );

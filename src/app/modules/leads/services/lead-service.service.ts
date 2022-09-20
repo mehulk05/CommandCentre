@@ -31,7 +31,7 @@ export class LeadServiceService {
   }
 
   getLeadCampaignCount(filterObj: any): any {
-    return this.apiService.get('/v1/api/leads/campaigns/agg/count', '', false, {}, filterObj);
+    return this.apiService.get('/v1/api/leads/campaigns/count', '', false, {}, filterObj);
   }
 
   getCampaignListByFilter(filterObj: any) {
@@ -60,6 +60,18 @@ export class LeadServiceService {
       filterObj
     );
   }
+
+  getChartData(filterObj: any) {
+    filterObj = this.handleEmptyFeilds(filterObj);
+    return this.apiService.get(
+      '/v1/api/leads/campaigns/agg/count',
+      '',
+      false,
+      {},
+      filterObj
+    );
+  }
+
 
   handleEmptyFeilds(params: any) {
     const updatedParams: any = {};
