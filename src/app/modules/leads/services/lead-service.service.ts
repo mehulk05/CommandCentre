@@ -27,11 +27,23 @@ export class LeadServiceService {
   }
 
   getAppointmentCount(filterObj: any): any {
-    return this.apiService.get('/v1/api/appointments/count', '', false, {}, filterObj);
+    return this.apiService.get(
+      '/v1/api/appointments/count',
+      '',
+      false,
+      {},
+      filterObj
+    );
   }
 
   getLeadCampaignCount(filterObj: any): any {
-    return this.apiService.get('/v1/api/leads/campaigns/count', '', false, {}, filterObj);
+    return this.apiService.get(
+      '/v1/api/leads/campaigns/count',
+      '',
+      false,
+      {},
+      filterObj
+    );
   }
 
   getCampaignListByFilter(filterObj: any) {
@@ -71,7 +83,6 @@ export class LeadServiceService {
       filterObj
     );
   }
-
 
   handleEmptyFeilds(params: any) {
     const updatedParams: any = {};

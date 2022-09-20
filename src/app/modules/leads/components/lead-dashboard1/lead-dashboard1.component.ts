@@ -258,12 +258,12 @@ export class LeadDashboard1Component implements OnInit {
     const filterObj = {
       campaignName: e,
       startDate: this.filter.startDate ?? '',
-      endDate: this.filter.endDate ?? '',
+      endDate: this.filter.endDate ?? ''
     };
     this.filter = filterObj;
     this.filterObs$ = of(this.filter);
     this.getCampaignAgg(this.leadCampaignConfig);
-    this.getLeadCampaignCount()
+    this.getLeadCampaignCount();
   }
 
   onDateSelect(e: any) {
@@ -289,21 +289,24 @@ export class LeadDashboard1Component implements OnInit {
 
   getCampaignAgg(pageConfig: any) {
     this.loadTable = true;
-    this.leadService.getCampaignAggregation(
-      this.filter,
-      pageConfig.currentPage,
-      pageConfig.itemsPerPage).then(
-      (data: any) => {
-        this.loadTable = false;
-        this.campaignAgg = data.results;
-        this.filterCampaignAgg = data.results;
-        console.log(data.result);
-      },
-      (e) => {
-        this.loadTable = false;
-        console.log(e);
-      }
-    );
+    this.leadService
+      .getCampaignAggregation(
+        this.filter,
+        pageConfig.currentPage,
+        pageConfig.itemsPerPage
+      )
+      .then(
+        (data: any) => {
+          this.loadTable = false;
+          this.campaignAgg = data.results;
+          this.filterCampaignAgg = data.results;
+          console.log(data.result);
+        },
+        (e) => {
+          this.loadTable = false;
+          console.log(e);
+        }
+      );
   }
 
   pageChangedForLeadCampaign(event: any) {
@@ -351,15 +354,17 @@ export class LeadDashboard1Component implements OnInit {
     //   return result + item.appointmentBooked;
     // },
     // 0);
-    this.pieChartData = [data.leadCount, data.appointmentBooked, data.revenueEarned];
+    this.pieChartData = [
+      data.leadCount,
+      data.appointmentBooked,
+      data.revenueEarned
+    ];
     this.MaximumLeadPieChart.pieChartData = this.pieChartData;
   }
 
-
   getChartData() {
     this.chartData = true;
-    this.leadService.getChartData(
-      this.filter).then(
+    this.leadService.getChartData(this.filter).then(
       (data: any) => {
         this.chartData = false;
         this.setPieChartData(data);
