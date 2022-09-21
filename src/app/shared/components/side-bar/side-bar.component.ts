@@ -38,60 +38,53 @@ export class SideBarComponent implements OnInit {
       },
       {
         id: 2,
-        displayName: 'Important Links',
+        displayName: 'Website',
         groupMenu: null,
-        position: 2,
-        items: [
-          {
-            id: 21,
-            displayName: 'Website',
-            groupMenu: null,
-            position: 1,
-            items: []
-          },
-          {
-            id: 22,
-            displayName: 'Baecamp',
-            groupMenu: null,
-            position: 1,
-            items: [],
-            url: 'https://3.basecamp.com/'
-          },
-          {
-            id: 23,
-            displayName: 'Unbounce',
-            groupMenu: null,
-            position: 1,
-            items: [],
-            url: 'https://unbounce.com/'
-          },
-          {
-            id: 24,
-            displayName: 'Zapier',
-            groupMenu: null,
-            position: 1,
-            items: [],
-            url: 'https://zapier.com/app/zaps'
-          },
-          {
-            id: 25,
-            displayName: 'Zenoti',
-            groupMenu: null,
-            position: 1,
-            items: [],
-            url: 'https://docs.zenoti.com/'
-          },
-          {
-            id: 25,
-            displayName: 'Close CRM',
-            groupMenu: null,
-            position: 1,
-            items: [],
-            url: 'https://close.com/'
-          }
-        ]
+        position: 1,
+        items: []
+      },
+      {
+        id: 3,
+        displayName: 'Baecamp',
+        groupMenu: null,
+        position: 1,
+        items: [],
+        url: 'https://3.basecamp.com/'
+      },
+      {
+        id: 4,
+        displayName: 'Unbounce',
+        groupMenu: null,
+        position: 1,
+        items: [],
+        url: 'https://unbounce.com/'
+      },
+      {
+        id: 5,
+        displayName: 'Zapier',
+        groupMenu: null,
+        position: 1,
+        items: [],
+        url: 'https://zapier.com/app/zaps'
+      },
+      {
+        id: 6,
+        displayName: 'Zenoti',
+        groupMenu: null,
+        position: 1,
+        items: [],
+        url: 'https://docs.zenoti.com/'
+      },
+      {
+        id: 7,
+        displayName: 'Close CRM',
+        groupMenu: null,
+        position: 1,
+        items: [],
+        url: 'https://close.com/'
       }
-    ];
+    ]
+
   }
 
   menuOperation() {

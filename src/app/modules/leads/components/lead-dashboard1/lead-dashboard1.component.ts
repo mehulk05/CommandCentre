@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ChartType, ChartOptions } from 'chart.js';
 import * as moment from 'moment-timezone';
@@ -30,6 +31,11 @@ export class LeadDashboard1Component implements OnInit {
   appointments: any[] = [];
   campaignAgg: any[] = [];
   filterCampaignAgg: any[] = [];
+  selectedDate: any;
+
+  bsRangeValue: Date[] = [];
+
+  myForm: FormBuilder = new FormBuilder();
 
   leadCampaignConfig: any = {
     itemsPerPage: 10,
@@ -179,7 +185,7 @@ export class LeadDashboard1Component implements OnInit {
   };
   pieChartLabels: Label[] = ['Leads', 'Appointmnent', 'Revenu Earned'];
   pieChartData: SingleDataSet = [0, 0, 0];
-  pieChartType: ChartType = 'doughnut';
+  pieChartType: ChartType = 'bar';
   pieChartLegend: any = true;
   pieChartPlugins = [];
   pieChartColors = [
@@ -229,6 +235,10 @@ export class LeadDashboard1Component implements OnInit {
     };
   }
   ngOnInit(): void {
+   // this.selectedDate = this.filter.startDate+ " - " + this.filter.endDate
+
+   this.bsRangeValue = [new Date(this.filter.startDate), new Date(this.filter.endDate)];
+
     this.getLeadCampaignCount();
     this.loadCampaignList();
     this.getCampaignAgg(this.leadCampaignConfig);

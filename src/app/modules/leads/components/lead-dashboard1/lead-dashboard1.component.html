@@ -7,7 +7,7 @@
 
           <div class="form-group">
             <select class="form-control" [(ngModel)]="filter.campaignName" (ngModelChange)="onChange($event)">
-              <option value="">Select your Campaign</option>
+              <option value="">Select your Campaign(All Campaigns)</option>
               <ng-container *ngFor="let campaign of CampaignList">
                 <option [value]="campaign">
                   {{campaign}}
@@ -17,7 +17,8 @@
           </div>
 
           <div class="form-group">
-            <input type="text" placeholder="Daterangepicker" class="form-control"  (bsValueChange)="onDateSelect($event)"
+            <input type="text"          [(ngModel)]="bsRangeValue"
+            placeholder="Daterangepicker" class="form-control"  (bsValueChange)="onDateSelect($event)"
               [bsConfig]="{containerClass:'theme-default'}" bsDaterangepicker />
           </div>
         </div>

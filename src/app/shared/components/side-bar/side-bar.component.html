@@ -18,7 +18,8 @@
                 </ng-container>
 
                 <ng-container *ngIf=" menu?.items.length===0">
-                    <a class="item-name" (click)="activeMenu(i)" [ngClass]="activeMenuIndex=== i ? 'active' : 'no'" [routerLink]="menu.routerLink">{{menu?.displayName}}</a>
+                    <a  *ngIf="!menu?.url" class="item-name" (click)="activeMenu(i)" [ngClass]="activeMenuIndex=== i ? 'active' : 'no'" [routerLink]="menu.routerLink">{{menu?.displayName}}</a>
+                    <a *ngIf="menu?.url" class="item-name" (click)="activeMenu(i)" [ngClass]="activeMenuIndex=== i ? 'active' : 'no'"  [href]="menu?.url" target="_blankl">{{menu?.displayName}}</a>
                 </ng-container>
             </div>
             <ng-container *ngIf=" menu?.items.length>0">
