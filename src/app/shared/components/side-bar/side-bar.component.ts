@@ -83,8 +83,7 @@ export class SideBarComponent implements OnInit {
         items: [],
         url: 'https://close.com/'
       }
-    ]
-
+    ];
   }
 
   menuOperation() {

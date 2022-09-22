@@ -30,7 +30,7 @@
             </thead>
             <tbody>
               <ng-container *ngIf="leadData && leadData.length>0 && leadConfig.totalItems>0">
-                <tr style="cursor: pointer;" *ngFor="let data of leadData | paginate: leadConfig">
+                <tr *ngFor="let data of leadData | paginate: leadConfig">
                   <td>{{data?.contacts[0]?.name}}</td>
                   <td>{{data?.name}}</td>
                   <td>{{data?.dateCreated | date : 'medium'}}</td>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ChartType, ChartOptions } from 'chart.js';
 import * as moment from 'moment-timezone';
@@ -235,9 +235,12 @@ export class LeadDashboard1Component implements OnInit {
     };
   }
   ngOnInit(): void {
-   // this.selectedDate = this.filter.startDate+ " - " + this.filter.endDate
+    // this.selectedDate = this.filter.startDate+ " - " + this.filter.endDate
 
-   this.bsRangeValue = [new Date(this.filter.startDate), new Date(this.filter.endDate)];
+    this.bsRangeValue = [
+      new Date(this.filter.startDate),
+      new Date(this.filter.endDate)
+    ];
 
     this.getLeadCampaignCount();
     this.loadCampaignList();

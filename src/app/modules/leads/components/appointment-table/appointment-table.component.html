@@ -43,7 +43,7 @@
             </thead>
             <ng-container *ngIf="appointments && appointments.length>0 && appointmentConfig.totalItems>0">
               <tbody *ngFor="let appointment of appointments  | paginate: appointmentConfig" >
-                <tr style="cursor: pointer;">
+                <tr>
                   <td>{{appointment?.appointmentId}}</td>
                   <td>{{appointment?.firstName}} {{appointment?.lastName}}</td>
                   <td>{{appointment?.leadData !== null &&  appointment?.leadData.length > 0 ? appointment?.leadData[0].name : ''}}</td>
