@@ -82,6 +82,14 @@ export class SideBarComponent implements OnInit {
         position: 1,
         items: [],
         url: 'https://close.com/'
+      },
+      {
+        id: 8,
+        displayName: 'Sync data',
+        groupMenu: null,
+        position: 1,
+        items: [],
+        routerLink: '/leads/sync'
       }
     ];
   }

@@ -12,6 +12,7 @@ import { CampaignleadsComponent } from './components/campaignleads/campaignleads
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AppointmentTableComponent } from './components/appointment-table/appointment-table.component';
 import { LeadTableComponent } from './components/lead-table/lead-table.component';
+import { DataSyncComponent } from './components/data-sync/data-sync.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { LeadTableComponent } from './components/lead-table/lead-table.component
     LeadDashboard1Component,
     CampaignleadsComponent,
     AppointmentTableComponent,
-    LeadTableComponent
+    LeadTableComponent,
+    DataSyncComponent
   ],
   imports: [
     CommonModule,

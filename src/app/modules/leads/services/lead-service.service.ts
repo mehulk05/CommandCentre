@@ -84,6 +84,10 @@ export class LeadServiceService {
     );
   }
 
+  callAppointmentHistorical() {
+    return this.apiService.get('/api/bulk-store', '', false);
+  }
+
   handleEmptyFeilds(params: any) {
     const updatedParams: any = {};
     if (params.campaignName) {
